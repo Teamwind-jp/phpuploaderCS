@@ -47,13 +47,13 @@ Visual Studio 2019 or later.
 Nothing in particular. It will work on Windows.
 .Net Framework 4.8 is specified, so please change it as appropriate.
 For zipping, I use the SharpZipLib library on NuGet.
-For uploading, I use My.Computer.Network.UploadFile.
+For uploading, I use Microsoft.VisualBasic.Devices.Network().[add Microsoft.VisualBasic.dll]
 PHP is required on the receiving side. However, the following PHP code is based on Windows.
 
 特にありません。windowsであれば動きます。  
 .net framework4.8を指定しているので適宜変更してください。  
 zipは、NuGetでSharpZipLibライブラリを使用しています。
-アップロードは、My.Computer.Network.UploadFileを使用しています。
+アップロードは、Microsoft.VisualBasic.Devices.Network()を使用しています。[参照にMicrosoft.VisualBasic.dllを追加しています。]
 受信側は、php必須です。ただ下記phpはwindows前提コードです。  
 
 # License
