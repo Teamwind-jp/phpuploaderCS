@@ -30,7 +30,7 @@ windowsサーバー間のデータバックアップツールです。
 3.順次他サーバーへ送信しています。  
 4.以上を日次または即時実行。  
 
-使用しているテクニック。
+使用しているテクニック。  
 1. 指定フォルダをSharpZipLibでzip。
 2. 負荷のかからないサイズの複数ファイルにFileStreamでカット。
 3. 順次My.Computer.Network.UploadFileで送信。
@@ -43,17 +43,17 @@ windowsサーバー間のデータバックアップツールです。
 Visual Basic版も公開しています。
 
 # Requirement
-Visual Studio 2019 or later.
-Nothing in particular. It will work on Windows.
-.Net Framework 4.8 is specified, so please change it as appropriate.
-For zipping, I use the SharpZipLib library on NuGet.
-For uploading, I use Microsoft.VisualBasic.Devices.Network().[add Microsoft.VisualBasic.dll]
-PHP is required on the receiving side. However, the following PHP code is based on Windows.
+Visual Studio 2019 or later.  
+Nothing in particular. It will work on Windows.  
+.Net Framework 4.8 is specified, so please change it as appropriate.  
+For zipping, I use the SharpZipLib library on NuGet.  
+For uploading, I use Microsoft.VisualBasic.Devices.Network().[add Microsoft.VisualBasic.dll]  
+PHP is required on the receiving side. However, the following PHP code is based on Windows.  
 
 特にありません。windowsであれば動きます。  
 .net framework4.8を指定しているので適宜変更してください。  
-zipは、NuGetでSharpZipLibライブラリを使用しています。
-アップロードは、Microsoft.VisualBasic.Devices.Network()を使用しています。[参照にMicrosoft.VisualBasic.dllを追加しています。]
+zipは、NuGetでSharpZipLibライブラリを使用しています。 
+アップロードは、Microsoft.VisualBasic.Devices.Network()を使用しています。[参照にMicrosoft.VisualBasic.dllを追加しています。]  
 受信側は、php必須です。ただ下記phpはwindows前提コードです。  
 
 # License
