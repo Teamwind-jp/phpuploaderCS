@@ -2,6 +2,8 @@
 
 (Translation by Google)
 
+![phpuploader](http://teamwind.serveblog.net/github/phpuploader/phpuploader.jpg)
+
 This is a data backup tool between Windows servers.
 I use it to exchange data between my personal main/backup servers.
 The functions of this exe are:
