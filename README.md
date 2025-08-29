@@ -1,76 +1,68 @@
 # phpuploaderCS
 
-(Translation by Google)
-
 ![phpuploader](http://teamwind.serveblog.net/github/phpuploader/phpuploader.jpg)
 
-This is a data backup tool between Windows servers.
-I use it to exchange data between my personal main/backup servers.
-The functions of this exe are:
-1. Zip the specified folder.
-2. Cut into multiple files of a size that does not put a load on the server.
-3. Sequentially send to other servers.
-4. Execute the above daily or immediately.
-
-The technique being used.
-1. Zip the specified folder using SharpZipLib.
-2. Cut into multiple files using FileStream.
-3. Send using My.Computer.Network.UploadFile.
-4. Execute using Task.Run.
-5. Use a simple PHP script to receive the files.
-6. Merge the received files using PHP.
-7. Use md5 to check the integrity of the files.
-8: Use delegates to update the UI.
-
-Visual Basic version is also available.
-
-windowsサーバー間のデータバックアップツールです。  
-個人で運用している本/予備サーバー同士のデータ交換に使用しています。  
-本exeの機能は、  
+本プロジェクトは、C# .netによるサーバーサイドの保守ツールです。  
+指定フォルダをzip(password付)し指定サイズで分割後、他サーバーへアップロード(php)しバックアップしています。  
+  
+処理内容は、  
 1.指定フォルダをzip。  
 2.負荷のかからないサイズの複数ファイルにカット。  
-3.順次他サーバーへ送信しています。  
-4.以上を日次または即時実行。  
-
-使用しているテクニック。  
-1. 指定フォルダをSharpZipLibでzip。
-2. 負荷のかからないサイズの複数ファイルにFileStreamでカット。
-3. 順次My.Computer.Network.UploadFileで送信。
-4. Task.Runで実行。
-5. 簡易PHPスクリプトでファイル受信。
-6. 受信したファイルをPHPで結合。
-7. md5でファイルの整合性チェック。
-8. デリゲートを使用して、UIの更新を行う。
-
-Visual Basic版も公開しています。
-
+3.順次phpサーバーへアップロードしています。  
+4.phpサーバー側で結合し保管。phpも添付しています。(receive.php)  
+5.以上を日次または即時実行。  
+以上です。  
+  
+※※補足※※  
+同じ処理を別の言語で作成した下記プロジェクトも公開中です。よろしければこちらのリポリトジもご覧ください。  
+phpuploader basic版  
+phpuploaderNJS Node.js版  
+  
 # Requirement
-Visual Studio 2019 or later.  
-Nothing in particular. It will work on Windows.  
-.Net Framework 4.8 is specified, so please change it as appropriate.  
-For zipping, I use the SharpZipLib library on NuGet.  
-For uploading, I use Microsoft.VisualBasic.Devices.Network().[add Microsoft.VisualBasic.dll]  
-PHP is required on the receiving side. However, the following PHP code is based on Windows.  
-
-特にありません。windowsであれば動きます。  
+  
+Windows11上で書いています。  
+nvmにてnodejsをインストール。現時点では下記バージョンです。  
+Visual Studio 2022を使用しています。Version 17.14.13 (August 2025)  
 .net framework4.8を指定しているので適宜変更してください。  
-zipは、NuGetでSharpZipLibライブラリを使用しています。 
+zipは、NuGetでSharpZipLibライブラリを使用しています。  
 アップロードは、Microsoft.VisualBasic.Devices.Network()を使用しています。[参照にMicrosoft.VisualBasic.dllを追加しています。]  
-受信側は、php必須です。ただ下記phpはwindows前提コードです。  
+  
+本プロジェクトを実行するためのphpサーバーを別途用意してください。  
+  
+# Usage
+  
+1.起動後、上図サンプル画面を参考に入力欄を設定してください。startボタンで開始します。  
+2.分割サイズは、php.iniの「post_max_size = 」側と合わせて調整してください。  
+3.もし公開サーバーで検証する場合は、phpのファイル名を複雑怪奇にしたり認証処理も追加するなどセキュリティを強化した方がよいと思います。  
+  
+# How It Works
+  
+  1.メイン処理は、backgroundWorker内に書いています。  
+  2.メイン処理は、永久ループしています。外部からのトリガーによって処理を開始しています。  
+  3.トリガーは、即時実行と日次実行があります。timer内でトリガーフラグを制御しています。    
+  4.日次の場合は、設定した次回実行日時とシステム日を比較判定しています。
+  5.phpは、受信したファイルのmd5値をprmと比較、最終ファイルなら結合をしています。  
 
-# License
-MIT license. Copyright: Teamwind.
-zip uses the SharpZipLib library.
-
-MIT license。著作権は、Teamwindです。  
-zipは、SharpZipLibライブラリ使用。
-
+# Tecnical Details
+  
+1.SharpZipLibでzip。  
+2.ファイルをFileStreamでカット。  
+3.md5取得。  
+4.My.Computer.Network.UploadFileでupload。  
+5.非同期処理。  
+6.デリゲートでUI更新。  
+7.php連携。  
+  
 # Note
-There may be bugs. Use at your own risk. Also, modify the code accordingly.
-If you have any requests, please email us. 
-
-バグがあるかもしれません。自己責任でご利用ください。また適宜コード変更してください。
-ご要望等がございましたらメール下さい。
+  
+実際に運用する場合は、もう少しセキュリティとエラー対策を強化する必要があります。サーバー負荷軽減の調整も必要です。  
+コードはすべてwindows前提です。他OSはパス等適宜変更してください。  
+バグがあるかもしれません。自己責任でご利用ください。また適宜コード変更してください。  
+ご要望等がございましたらメール下さい。  
+  
+# License
+  
+MIT license。オリジナルコードの著作権は、Teamwindです。それ以外のライブラリ等の著作権は各々の所有者に帰属します。  
 
 This is a sample php. 以下サンプルphpです。  
 
