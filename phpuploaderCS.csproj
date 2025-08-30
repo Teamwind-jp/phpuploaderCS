@@ -101,6 +101,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="README.md" />
+    <None Include="receive.php" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
